@@ -10,6 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class UserController {
 
     UserService userService
+    def exportService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -37,7 +38,22 @@ class UserController {
 
     @Secured(["ROLE_ADMIN", "ROLE_AGENT"])
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 1000, 100000)
+
+        if(params?.f && params.f != "html"){
+            if(f.equals('xls')) {
+                response.contentType = "application/vnd.ms-excel"
+            } else if(f.equals('csv')) {
+                response.contentType = "application/vnd.ms-excel"
+            } else {
+                response.contentType = "application/octet-stream"
+            }
+            response.setHeader("Content-disposition", "attachment; filename=users.${params.extension}")
+            exportService.export(params.f, response.outputStream,userService.list(params), [:], [:])
+        } else {
+
+        }
+
         respond userService.list(params), model:[userCount: userService.count()]
     }
 

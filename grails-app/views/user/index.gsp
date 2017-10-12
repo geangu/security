@@ -4,6 +4,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <r:require module="export"/>
     </head>
     <body>
         <div class="pull-right">
@@ -38,6 +39,8 @@
                     </tr>
                 </g:each>
             </table>
+
+            <export:formats formats="['excel', 'ods', 'pdf', 'csv']"/>
         </div>
     </body>
 </html>
