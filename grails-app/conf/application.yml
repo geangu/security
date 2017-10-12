@@ -118,7 +118,7 @@ environments:
     production:
         dataSource:
             dbCreate: update
-            jndiName: "jdbc/security"
+            jndiName: "java:comp/env/jdbc/security"
             properties:
                 jmxEnabled: true
                 initialSize: 5
