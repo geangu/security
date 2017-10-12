@@ -11,6 +11,10 @@ class BootStrap {
 		adminRole.authority = "ROLE_ADMIN"
 		adminRole.save(flush:true, failOnError:true)
 
+		def userRole = new Role()
+		userRole.authority = "ROLE_USER"
+		userRole.save(flush:true, failOnError:true)
+
 		def adminUser = new User()
 
 		adminUser.username = "admin"

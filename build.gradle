@@ -47,6 +47,7 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.1.5.Final"
 
     compile 'org.grails.plugins:spring-security-core:3.2.0'
+    compile 'rpalcolea.gravatar:gravatar:1.0.2'
 
     compile "org.grails.plugins:gsp"
     console "org.grails:grails-console"

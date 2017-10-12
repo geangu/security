@@ -8,33 +8,88 @@
 </head>
 <body>
 
-    <div id="content" role="main">
-        <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
-
-            <sec:ifLoggedIn>
-
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <div class="jumbotron">
+                <h1><span class="icon-shield"></span> Welcome to Security App</h1>
+                <hr>
                 <p>
-                    Welcome Back <sec:loggedInUserInfo field='username'/>
-                    <sec:access expression="hasRole('ROLE_ADMIN')">
-                    <br>You're a admin
-                    </sec:access>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet porta metus, non aliquet quam commodo quis. Duis pretium egestas ullamcorper. Suspendisse ac nunc ac mauris vehicula venenatis eget eu dolor. 
                 </p>
+                <hr>
+                <p class="text-center">
+                    <sec:ifLoggedIn>
+                        <g:link controller="home" class="btn btn-success btn-lg"><span class="icon-home"></span> Home</g:link>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <a class="btn btn-default btn-lg" data-toggle="modal" data-target="#sign-up"><span class="icon-user-tie"></span> Sign Up</a>
+                        <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#sign-in"><span class="icon-enter"></span> Sign In</a>
+                    </sec:ifNotLoggedIn>
+                </p>
+            </div>
+            <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="sign-up-label">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="sign-up-label"><span class="icon-user-tie"></span> Sign Up</h4>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <a class="pull-left btn btn-default"><span class="icon-facebook"></span> Registrarse con facebook </a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="icon-cross"></span> Close</button>
+                            <button type="button" class="btn btn-primary"><span class="icon-user-tie"></span> Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="sign-in" tabindex="-1" role="dialog" aria-labelledby="sign-un-label">
+                <div class="modal-dialog" role="document">
+                    <div >
+                    <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="modal-content" autocomplete="off">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="sign-un-label"><span class="icon-enter"></span> Sign In</h4>
+                        </div>
+                        <div class="modal-body">
 
-                <g:link class="btn btn-sm btn-danger" controller="logout" action="index">Salir</g:link>
+                            
+                                <div class="form-group">
+                                    <label for="username"><g:message code='springSecurity.login.username.label'/>:</label>
+                                    <input type="text" class="form-control" name="${usernameParameter ?: 'username'}" id="username"/>
+                                </div>
 
-                <ul>
-                    <li><g:link class="btn btn-sm btn-default" controller="user" action="index">Usuarios</g:link></li>
-                </ul>
+                                <div class="form-group">
+                                    <label for="password"><g:message code='springSecurity.login.password.label'/>:</label>
+                                    <input type="password" class="form-control" name="${passwordParameter ?: 'password'}" id="password"/>
+                                </div>
 
-            </sec:ifLoggedIn>
+                                <p id="remember_me_holder">
+                                    <input type="checkbox" class="chk" name="${rememberMeParameter ?: 'remember-me'}" id="remember_me" <g:if test='${hasCookie}'>checked="checked"</g:if>/>
+                                    <label for="remember_me"><g:message code='springSecurity.login.remember.me.label'/></label>
+                                </p>                           
 
-            <sec:ifNotLoggedIn>
-                <g:link class="btn btn-sm btn-primary" controller="login" action="index">Iniciar</g:link>
-            </sec:ifNotLoggedIn>
 
-        </section>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="pull-left btn btn-default"><span class="icon-facebook"></span> Iniciar con facebook </a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="icon-cross"></span> Close</button>
+                            <button type="submit" class="btn btn-primary"><span class="icon-enter"></span> <g:message code='springSecurity.login.button'/></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
 </body>
 </html>

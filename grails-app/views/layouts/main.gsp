@@ -14,35 +14,35 @@
 </head>
 <body>
 
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
+                <a class="navbar-brand" href="/"><span class="icon-shield"></span> Security</a>
             </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <sec:ifLoggedIn>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/home"><span class="icon-home"></span> Home</a></li>
+                        <li><g:link controller="user" action="index"><span class="icon-users"></span> Administrar Usuarios</g:link></li>
+                        <li>
+                            <g:link controller="logout" action="index"><span class="icon-exit"></span> Salir</g:link>
+                        </li>
+                    </ul>
+                </sec:ifLoggedIn>
             </div>
+
         </div>
-    </div>
+    </nav>
 
-    <g:layoutBody/>
-
-    <div class="footer" role="contentinfo"></div>
-
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
+    <div class="container">
+        <g:layoutBody/>
     </div>
 
     <asset:javascript src="application.js"/>

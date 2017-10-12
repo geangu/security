@@ -26,5 +26,6 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
 
-grails.plugin.springsecurity.logout.postOnly=false
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.password.algorithm = 'bcrypt'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
