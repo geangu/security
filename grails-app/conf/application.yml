@@ -101,16 +101,24 @@ dataSource:
 environments:
     development:
         dataSource:
+            pooled: true
             dbCreate: create-drop
-            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: "jdbc:mysql://localhost/security"
+            driverClassName: "com.mysql.jdbc.Driver"
+            username: "root"
+            password: "123456"
     test:
         dataSource:
-            dbCreate: update
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            pooled: true
+            dbCreate: "update"
+            url: "jdbc:mysql://localhost/security-test"
+            driverClassName: "com.mysql.jdbc.Driver"
+            username: "root"
+            password: "123456"
     production:
         dataSource:
-            dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: update
+            jndiName: "jdbc/security"
             properties:
                 jmxEnabled: true
                 initialSize: 5
