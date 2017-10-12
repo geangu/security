@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <g:textField name="phone" value="${this.user.phone}" required="true" class="form-control"/>
+                    <g:textField name="phone" value="${this.user.phone}" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label>Username *</label>

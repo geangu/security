@@ -2,7 +2,7 @@ package com.example.security
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(["ROLE_ADMIN", "ROLE_USER"])
+@Secured(["ROLE_ADMIN", "ROLE_AGENT", "ROLE_USER"])
 class HomeController {
 
 	def springSecurityService

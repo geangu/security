@@ -6,7 +6,7 @@
     </head>
     <body>
     	<div class="row">
-    		<form class="form">
+    		<g:form class="form" method="post" controller="user" action="updateInfo" id="${user.id}">
 	    		<h2>Personal Info</h2>
 	    		<hr>
 	    		<div class="col-sm-2 col-sm-offset-2 ">
@@ -15,14 +15,19 @@
 	                </div>
 	            </div>
 	    		<div class="col-sm-6">
-	    			
+	    				<g:if test="${flash.message}">
+			                <div class="alert alert-dismissible alert-info">
+			                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+			                    ${flash.message}
+			                </div>
+			            </g:if>
 						<div class="form-group">
 							<label for="fullName">Full Name</label>
 							<g:textField name="fullName" value="${user.fullName}" class="form-control"/>
 						</div>
 						<div class="form-group">
 							<label for="email">Email</label>
-							<g:textField name="email" value="${user.email}" class="form-control"/>
+							<g:textField name="email" value="${user.email}" class="form-control" readonly="true"/>
 						</div>
 						<div class="form-group">
 							<label for="phone">Phone</label>
@@ -30,10 +35,10 @@
 						</div>
 						<hr>
 						<div class="text-center">
-							<g:link controller="home" action="save" class="btn btn-primary">Guardar</g:link>
+							<button type="submit" class="btn btn-info">Guardar</button>
 						</div>
     			</div>
-    		</form>	
+    		</g:form>	
     	</div>
     </body>
 </html>

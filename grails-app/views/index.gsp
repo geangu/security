@@ -31,20 +31,43 @@
             <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="sign-up-label">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="sign-up-label"><span class="icon-user-tie"></span> Sign Up</h4>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <a class="pull-left btn btn-default"><span class="icon-facebook"></span> Registrarse con facebook </a>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="icon-cross"></span> Close</button>
-                            <button type="button" class="btn btn-primary"><span class="icon-user-tie"></span> Register</button>
-                        </div>
+                        <g:form method="POST" class="form" controller="user" action="register">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="sign-up-label"><span class="icon-user-tie"></span> Sign Up</h4>
+                            </div>
+                            <div class="modal-body">
+                            
+                                <div class="form-group">
+                                    <label>Full Name *</label>
+                                    <g:textField name="fullName" required="true" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <g:textField name="email" required="true" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <g:textField name="phone" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Username *</label>
+                                    <g:textField name="username" required="true" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password *</label>
+                                    <g:passwordField name="password" required="true" class="form-control"/>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="pull-left btn btn-default"><span class="icon-facebook"></span> Registrarse con facebook </a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="icon-cross"></span> Close</button>
+                                <button type="submit" class="btn btn-primary"><span class="icon-user-tie"></span> Register</button>
+                            </div>
+                        </g:form>
                     </div>
                 </div>
             </div>

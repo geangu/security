@@ -30,7 +30,9 @@
                 <sec:ifLoggedIn>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/home"><span class="icon-home"></span> Home</a></li>
-                        <li><g:link controller="user" action="index"><span class="icon-users"></span> Administrar Usuarios</g:link></li>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_AGENT">
+                            <li><g:link controller="user" action="index"><span class="icon-users"></span> Administrar Usuarios</g:link></li>
+                        </sec:ifAnyGranted>
                         <li>
                             <g:link controller="logout" action="index"><span class="icon-exit"></span> Salir</g:link>
                         </li>

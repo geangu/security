@@ -13,6 +13,28 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
+    def register(){
+        def userRole = Role.findByAuthority("ROLE_USER")
+        def user = new User(params)
+        user.save(flush:true)
+        if(user.id != null){
+            UserRole.create(user, userRole, true)
+            message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
+        }
+        render view:'register', model: [user: user]
+    }
+
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def updateInfo(){
+        def user = User.get(params.id)
+        user.fullName = params.fullName
+        user.phone = params.phone
+        user.save(flush:true)
+        flash.message = "Usuario actualizado"
+        redirect controller:'home', action:'index'
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond userService.list(params), model:[userCount: userService.count()]
@@ -79,6 +101,9 @@ class UserController {
             notFound()
             return
         }
+        
+        def user = User.get(id)
+        UserRole.removeAll(user)
 
         userService.delete(id)
 
