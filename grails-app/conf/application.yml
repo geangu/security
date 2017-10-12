@@ -104,7 +104,7 @@ environments:
             pooled: true
             dbCreate: create-drop
             url: "jdbc:mysql://localhost/security"
-            driverClassName: "com.mysql.jdbc.Driver"
+            driverClassName: "com.mysql.cj.jdbc.Driver"
             username: "root"
             password: "123456"
     test:
@@ -112,12 +112,12 @@ environments:
             pooled: true
             dbCreate: "update"
             url: "jdbc:mysql://localhost/security-test"
-            driverClassName: "com.mysql.jdbc.Driver"
+            driverClassName: "com.mysql.cj.jdbc.Driver"
             username: "root"
             password: "123456"
     production:
         dataSource:
-            dbCreate: update
+            dbCreate: create-drop
             jndiName: "java:comp/env/jdbc/security"
             properties:
                 jmxEnabled: true

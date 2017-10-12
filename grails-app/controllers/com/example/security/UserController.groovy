@@ -35,11 +35,13 @@ class UserController {
         redirect controller:'home', action:'index'
     }
 
+    @Secured(["ROLE_ADMIN", "ROLE_AGENT"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond userService.list(params), model:[userCount: userService.count()]
     }
 
+    @Secured(["ROLE_ADMIN", "ROLE_AGENT"])
     def show(Long id) {
         respond userService.get(id)
     }
